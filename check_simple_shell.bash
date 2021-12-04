@@ -58,7 +58,7 @@ echo -ne "\033[37m"
 rm -f $OUTPUTFILE $LTRACEOUTPUTFILE
 
 # Locates all tests and launch them
-for dir in `ls -d "$TESTDIR"/*/`
+for dir in `ls -d "$TESTDIR"/tests/*/`
 do
     echo "> $dir"
     for testname in `ls "$dir" | grep -v "~$"`

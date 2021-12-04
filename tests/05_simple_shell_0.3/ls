@@ -11,6 +11,7 @@ rm -f $tmp_file
 
 # create a pseudo random file
 touch $tmp_file
+
 # send commands
 echo "$command" | $SHELL > $OUTPUTFILE 2> /dev/null &
 
@@ -19,10 +20,11 @@ $SLEEP $SLEEPSECONDS
 
 # check the result
 nmatch=`cat $OUTPUTFILE | grep -c "$tmp_file"`
+
 if [ $nmatch -eq 1 ]; then
 	   print_ok
 else
-	   print_ko
+	   print_ko;
 fi
 
 # clean up

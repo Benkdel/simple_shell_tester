@@ -14,6 +14,7 @@ rm -f $tmp_file
 
 # create a pseudo random file
 touch $tmp_file
+
 # send commands
 echo "$command" | $SHELL > $OUTPUTFILE 2> /dev/null &
 
