@@ -1,0 +1,20 @@
+#!/bin/bash
+
+FILENAME="man_1_simple_shell"
+FULLNAME="$PROJECTDIR/$FILENAME"
+
+# wait a little bit
+$SLEEP $SLEEPSECONDS
+
+if [ -f "$FULLNAME" ];
+then
+    print_ok
+    res="0"
+else
+    print_ko
+    res="1"
+fi
+
+# log results
+log_results "none" "none" "$LOGFILE" "check if man page exists" "$res"
+

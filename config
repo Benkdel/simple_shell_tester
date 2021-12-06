@@ -1,6 +1,7 @@
 # Configuration file
 
 TESTDIR="."
+PROJECTDIR="/home/cbentind/holberton_school/myShell"
 R=$RANDOM
 SHOWRESULTS="1"
 OUTPUTFILE="checker_output_$R"

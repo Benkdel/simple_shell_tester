@@ -107,8 +107,8 @@ function log_results()
     command=$4
     result=$5
     if [[ $SHOWRESULTS -eq 1 ]]; then
-    	exp=`cat $tmp_file`
-    	rec=`cat $OUTPUTFILE`
+    	exp=`cat $tmp_file 2> /dev/null`
+    	rec=`cat $OUTPUTFILE 2> /dev/null`
     	echo "Logging Results" >> $LOGFILE
     	if [[ $result -eq 0 ]]; then
             echo "<--PASSED-->" >> $LOGFILE
@@ -135,6 +135,7 @@ function log_results()
 source config
 
 # counters
+testdir=0
 
 # reset errog log file
 echo "RESULTS FROM LAST CHECK-RUN - EXPECTED VS RECEIVED OUTPUT" > $LOGFILE
@@ -150,7 +151,8 @@ for dir in `ls -d "$TESTDIR"/tests/*/`
 do
     echo -e " $pre_t $font_yello $dir $post_t "
     if [[ $SHOWRESULTS -eq 1 ]]; then
-        echo " === Test Directory >>> $dir ==================================" >> $LOGFILE
+        echo "=================================================================================================== " >> $LOGFILE
+        echo " $>> Test Directory --> $dir " >> $LOGFILE
         echo >> $LOGFILE
     fi
     for testname in `ls "$dir" | grep -v "~$"`
