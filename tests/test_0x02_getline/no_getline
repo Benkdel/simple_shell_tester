@@ -30,8 +30,6 @@ fi
 # LOG RESULTS
 log_results "$tmp_file" "$OUTPUTFILE" "$LOGFILE" "$command" "$res"
 
-
-
 # clean up
 stop_shell
 rm -f $tmp_file
