@@ -16,6 +16,7 @@ OLDPATH="$PATH"
 PATH=""
 # send commands
 $ECHO "$command" | $SHELL > $OUTPUTFILE 2> $ERROROUTPUTFILE &
+$ECHO "$command" | $OSHELL > $tmp_file 2> /dev/null &
 
 # put PATH back
 PATH="$OLDPATH"
@@ -28,11 +29,18 @@ cat $ERROROUTPUTFILE
 # check the result
 nmatch=`$CAT $OUTPUTFILE | $GREP -c "$tmp_file"`
 if [ $nmatch -eq 1 ]; then
-    print_ok
-else
+      print_ok
+    res="0"
+  else
     print_ko
+    res="1"
 fi
+
+# LOG RESULTS
+log_results "$tmp_file" "$OUTPUTFILE" "$LOGFILE" "$command" "$res"
+
+
 
 # clean up
 stop_shell
-$RM -f $tmp_file
+rm -f $tmp_file

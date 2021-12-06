@@ -2,10 +2,12 @@
 
 TESTDIR="."
 R=$RANDOM
+SHOWRESULTS="1"
 OUTPUTFILE="checker_output_$R"
 ERROROUTPUTFILE="checker_error_output_$R"
+LOGFILE="log_results/logs"
 SHELL="/home/cbentind/holberton_school/myShell/Tests/hsh"
-#SHELL="/bin/sh"
+OSHELL="/bin/sh"
 SLEEP=`which sleep`
 SLEEPSECONDS=1
 LTRACE=`which ltrace`

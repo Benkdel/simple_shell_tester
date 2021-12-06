@@ -1,11 +1,8 @@
 #!/bin/bash
 #
-# run ls with spaces everywhere
+# test simple command /bin/ls
 
-command="ls
-     ls
-ls     
- ls     "
+command="/bin/ls"
 tmp_file="checker_tmp_file_$RANDOM"
 
 # clean up
@@ -14,19 +11,26 @@ rm -f $tmp_file
 
 # create a pseudo random file
 touch $tmp_file
-# send commands
+# run command
 echo "$command" | $SHELL > $OUTPUTFILE 2> /dev/null &
+echo "$command" | $OSHELL > $tmp_file 2> /dev/null &
 
 # wait a little bit
 $SLEEP $SLEEPSECONDS
 
 # check the result
 nmatch=`cat $OUTPUTFILE | grep -c "$tmp_file"`
-if [ $nmatch -eq 4 ]; then
-	   print_ok
-else
-	   print_ko
+
+if [ $nmatch -eq 1 ]; then
+    print_ok
+    res="0"
+  else
+    print_ko
+    res="1"
 fi
+
+# LOG RESULTS
+log_results "$tmp_file" "$OUTPUTFILE" "$LOGFILE" "$command" "$res"
 
 # clean up
 stop_shell

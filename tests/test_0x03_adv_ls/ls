@@ -7,13 +7,14 @@ tmp_file="checker_tmp_file_$RANDOM"
 
 # clean up
 stop_shell
-rm -f $tmp_file
+# rm -f $tmp_file
 
 # create a pseudo random file
 touch $tmp_file
 
 # send commands
 echo "$command" | $SHELL > $OUTPUTFILE 2> /dev/null &
+echo "$command" | $OSHELL > $tmp_file 2> /dev/null &
 
 # wait a little bit
 $SLEEP $SLEEPSECONDS
@@ -22,10 +23,16 @@ $SLEEP $SLEEPSECONDS
 nmatch=`cat $OUTPUTFILE | grep -c "$tmp_file"`
 
 if [ $nmatch -eq 1 ]; then
-	   print_ok
-else
-	   print_ko;
+    print_ok
+    res="0"
+  else
+    print_ko
+    res="1"
 fi
+
+# LOG RESULTS
+log_results "$tmp_file" "$OUTPUTFILE" "$LOGFILE" "$command" "$res"
+
 
 # clean up
 stop_shell
