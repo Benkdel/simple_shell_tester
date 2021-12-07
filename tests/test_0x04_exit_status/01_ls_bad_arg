@@ -3,7 +3,7 @@
 # simple test to check exit status after an invalid command
 
 # command to execute
-command="hello world"
+command="ls bad_arg"
 tmp_file="checker_tmp_file_$RANDOM"
 
 # clean up
@@ -13,15 +13,15 @@ rm -f $tmp_file
 # send commands
 echo "$command" | $SHELL >> $OUTPUTFILE 2> $OUTPUTFILE
 received_exit_status=`echo $?`
-echo "" >> $OUTPUTFILE
+echo >> $OUTPUTFILE
 echo "Exit status: " >> $OUTPUTFILE
-echo $received_exit_status >> $OUTPUTFILE
+echo $received_exit_status >> $OUTPUTFILE 
 
 echo "$command" | $OSHELL >> $tmp_file 2> $tmp_file
 expected_exit_status=`echo $?`
-echo "" >> $tmp_file
+echo >> $tmp_file
 echo "Exit status: " >> $tmp_file
-echo $expected_exit_status >> $tmp_file
+echo $expected_exit_status >> $tmp_file 
 
 # wait a little bit
 $SLEEP $SLEEPSECONDS
