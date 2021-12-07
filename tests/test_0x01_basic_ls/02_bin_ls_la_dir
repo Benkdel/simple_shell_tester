@@ -32,7 +32,7 @@ if [ $nmatch -eq 1 ]; then
 fi
 
 # LOG RESULTS
-log_results "$tmp_file" "$OUTPUTFILE" "$LOGFILE" "$command" "$res"
+log_results "$tmp_file" "$OUTPUTFILE" "$LOGFILE" "$command" "$res" "$nmatch"
 
 
 

@@ -38,7 +38,7 @@ if [ $nmatch -eq 10 ]; then
 fi
 
 # LOG RESULTS
-log_results "$tmp_file" "$OUTPUTFILE" "$LOGFILE" "$command" "$res"
+log_results "$tmp_file" "$OUTPUTFILE" "$LOGFILE" "$command" "$res" "$nmatch"
 
 
 # clean up

@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+# test simple command /bin/ls by doing it a lot of times, with spaces and with arguments:
+
+command="       /bin/ls -la            
+                                              /bin/ls -1
+                 /bin/ls -l
+                                        /bin/ls -1
+                 /bin/ls -la
+                                                       /bin/ls -1
+   /bin/ls -a
+                                /bin/ls -la"
+tmp_file="testing_tmp_file_$RANDOM"
+
+# create a pseudo random file
+touch $tmp_file
+# run command
+echo "$command" | $SHELL > $OUTPUTFILE 2> /dev/null &
+echo "$command" | $OSHELL > $tmp_file 2> /dev/null &
+
+# wait a little bit
+$SLEEP $SLEEPSECONDS
+
+# check the result
+nmatch=`cat $OUTPUTFILE | grep -c "$tmp_file"`
+# check the results
+if [ $nmatch -eq 8 ]; then
+	print_ok
+        res="0"
+else
+	print_ko
+        res="1"
+fi
+
+# LOG RESULTS
+log_results "$tmp_file" "$OUTPUTFILE" "$LOGFILE" "$command" "$res" "$nmatch"
+
+# clean up
+stop_shell
+rm -f $tmp_file

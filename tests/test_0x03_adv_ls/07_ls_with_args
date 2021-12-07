@@ -7,7 +7,6 @@ tmp_file="checker_tmp_file_$RANDOM"
 
 # clean up
 stop_shell
-rm -f $tmp_file
 
 # create a pseudo random file
 touch $tmp_file
@@ -20,6 +19,7 @@ $SLEEP $SLEEPSECONDS
 
 # check the result
 nmatch=`cat $OUTPUTFILE | grep -c "$tmp_file"`
+# check the result
 if [ $nmatch -eq 1 ]; then
     print_ok
     res="0"
@@ -29,8 +29,7 @@ if [ $nmatch -eq 1 ]; then
 fi
 
 # LOG RESULTS
-log_results "$tmp_file" "$OUTPUTFILE" "$LOGFILE" "$command" "$res"
-
+log_results "$tmp_file" "$OUTPUTFILE" "$LOGFILE" "$command" "$res" "$nmatch"
 
 # clean up
 stop_shell

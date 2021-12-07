@@ -19,7 +19,7 @@ $SLEEP $SLEEPSECONDS
 
 # check the result
 nmatch=`cat $LTRACEOUTPUTFILE | grep getline | wc -l`
-if [ $nmatch -eq 1 ]; then
+if [ $nmatch -eq 3 ]; then
     print_ok
     res="0"
   else
@@ -28,7 +28,7 @@ if [ $nmatch -eq 1 ]; then
 fi
 
 # LOG RESULTS
-log_results "$tmp_file" "$OUTPUTFILE" "$LOGFILE" "$command" "$res"
+log_results "$tmp_file" "$OUTPUTFILE" "$LOGFILE" "$command" "$res" "$nmatch"
 
 # clean up
 stop_shell

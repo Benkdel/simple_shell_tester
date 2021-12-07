@@ -106,6 +106,7 @@ function log_results()
     LOGFILE=$3
     command=$4
     result=$5
+    lmatchs=$6
     if [[ $SHOWRESULTS -eq 1 ]]; then
     	exp=`cat $tmp_file 2> /dev/null`
     	rec=`cat $OUTPUTFILE 2> /dev/null`
@@ -120,6 +121,9 @@ function log_results()
     	echo "Command executed: " >> $LOGFILE
     	echo "$command" >> $LOGFILE
     	echo >> $LOGFILE
+        echo "Lines MATCHED: " >> $LOGFILE
+        echo "$lmatchs" >> $LOGFILE
+        echo >> $LOGFILE
     	echo "--- Expected Output -----------------" >> $LOGFILE
     	echo $exp >> $LOGFILE
     	echo >> $LOGFILE
@@ -129,7 +133,6 @@ function log_results()
     	echo >> $LOGFILE
     fi
 }
-
 
 # Load configuration
 source config
