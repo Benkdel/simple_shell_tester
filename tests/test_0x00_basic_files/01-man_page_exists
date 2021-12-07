@@ -15,6 +15,3 @@ else
     res="1"
 fi
 
-# log results
-log_results "none" "none" "$LOGFILE" "check if man page exists" "$res"
-

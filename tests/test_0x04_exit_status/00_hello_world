@@ -1,0 +1,43 @@
+#!/bin/bash
+#
+# simple test to check exit status after an invalid command
+
+# command to execute
+command="hello world"
+tmp_file="checker_tmp_file_$RANDOM"
+
+# clean up
+stop_shell
+rm -f $tmp_file
+
+# send commands
+echo "$command" | $SHELL >> $OUTPUTFILE
+received_exit_status=`echo $?`
+echo >> $OUTPUTFILE
+echo "Exit status: " >> $OUTPUTFILE
+echo $received_exit_status >> $OUTPUTFILE
+
+echo "$command" | $OSHELL >> $tmp_file
+expected_exit_status=`echo $?`
+echo >> $tmp_file
+echo "Exit status: " >> $tmp_file
+echo $expected_exit_status >> $tmp_file
+
+# wait a little bit
+$SLEEP $SLEEPSECONDS
+
+# check the result
+if [ $received_exit_status -eq $expected_exit_status ]; then
+    print_ok
+    res="0"
+  else
+    print_ko
+    res="1"
+fi
+
+# LOG RESULTS
+log_results "$expected_exit_status" "$received_exit_status" "$LOGFILE" "$command" "$res"
+
+# clean up
+stop_shell
+rm -f $tmp_file
