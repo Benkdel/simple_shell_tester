@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# test if README file exists
+
 FILENAME="README.md"
 FULLNAME="$PROJECTDIR/$FILENAME"
 

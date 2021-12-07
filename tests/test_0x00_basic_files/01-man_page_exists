@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# test if MANUAL file exists
+
 FILENAME="man_1_simple_shell"
 FULLNAME="$PROJECTDIR/$FILENAME"
 

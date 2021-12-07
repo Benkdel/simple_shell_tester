@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# test if AUTHORS file exists
+
 FILENAME="AUTHORS"
 FULLNAME="$PROJECTDIR/$FILENAME"
 

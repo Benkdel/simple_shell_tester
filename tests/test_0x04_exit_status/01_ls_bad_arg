@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# simple test to check exit status after an invalid command
+# test with incorrect argument - test exit status
 
 # command to execute
 command="ls bad_arg"
